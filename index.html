@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Currency Converter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <section class="converter-card">
+
+            <div class="brand">
+                <div class="brand-icon">↗</div>
+                <div>
+                    <h1>Currency Converter</h1>
+                    <p>Convert currencies using live exchange rates</p>
+                </div>
+            </div>
+
+            <div class="converter">
+
+                <!-- Amount -->
+                <div class="input-group">
+                    <label for="amount">Amount</label>
+
+                    <div class="amount-box">
+                        <span class="currency-symbol" id="fromSymbol">$</span>
+                        <input
+                            type="number"
+                            id="amount"
+                            value="1"
+                            min="0"
+                            step="any"
+                            placeholder="Enter amount"
+                        >
+                    </div>
+                </div>
+
+                <!-- Currency selectors -->
+                <div class="currency-row">
+
+                    <div class="input-group">
+                        <label for="fromCurrency">From</label>
+
+                        <div class="select-box">
+                            <select id="fromCurrency">
+                                <option value="USD">🇺🇸 USD — US Dollar</option>
+                                <option value="EUR">🇪🇺 EUR — Euro</option>
+                                <option value="GBP">🇬🇧 GBP — British Pound</option>
+                                <option value="PKR" selected>🇵🇰 PKR — Pakistani Rupee</option>
+                                <option value="AED">🇦🇪 AED — UAE Dirham</option>
+                                <option value="SAR">🇸🇦 SAR — Saudi Riyal</option>
+                                <option value="CAD">🇨🇦 CAD — Canadian Dollar</option>
+                                <option value="AUD">🇦🇺 AUD — Australian Dollar</option>
+                                <option value="JPY">🇯🇵 JPY — Japanese Yen</option>
+                                <option value="CNY">🇨🇳 CNY — Chinese Yuan</option>
+                                <option value="INR">🇮🇳 INR — Indian Rupee</option>
+                                <option value="TRY">🇹🇷 TRY — Turkish Lira</option>
+                                <option value="RUB">🇷🇺 RUB — Russian Ruble</option>
+                                <option value="CHF">🇨🇭 CHF — Swiss Franc</option>
+                                <option value="NZD">🇳🇿 NZD — New Zealand Dollar</option>
+                                <option value="SGD">🇸🇬 SGD — Singapore Dollar</option>
+                                <option value="MYR">🇲🇾 MYR — Malaysian Ringgit</option>
+                                <option value="THB">🇹🇭 THB — Thai Baht</option>
+                                <option value="KRW">🇰🇷 KRW — South Korean Won</option>
+                                <option value="QAR">🇶🇦 QAR — Qatari Riyal</option>
+                                <option value="KWD">🇰🇼 KWD — Kuwaiti Dinar</option>
+                                <option value="BHD">🇧🇭 BHD — Bahraini Dinar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Swap -->
+                    <button class="swap-btn" id="swapBtn" type="button" aria-label="Swap currencies">
+                        ⇄
+                    </button>
+
+                    <div class="input-group">
+                        <label for="toCurrency">To</label>
+
+                        <div class="select-box">
+                            <select id="toCurrency">
+                                <option value="USD" selected>🇺🇸 USD — US Dollar</option>
+                                <option value="EUR">🇪🇺 EUR — Euro</option>
+                                <option value="GBP">🇬🇧 GBP — British Pound</option>
+                                <option value="PKR">🇵🇰 PKR — Pakistani Rupee</option>
+                                <option value="AED">🇦🇪 AED — UAE Dirham</option>
+                                <option value="SAR">🇸🇦 SAR — Saudi Riyal</option>
+                                <option value="CAD">🇨🇦 CAD — Canadian Dollar</option>
+                                <option value="AUD">🇦🇺 AUD — Australian Dollar</option>
+                                <option value="JPY">🇯🇵 JPY — Japanese Yen</option>
+                                <option value="CNY">🇨🇳 CNY — Chinese Yuan</option>
+                                <option value="INR">🇮🇳 INR — Indian Rupee</option>
+                                <option value="TRY">🇹🇷 TRY — Turkish Lira</option>
+                                <option value="RUB">🇷🇺 RUB — Russian Ruble</option>
+                                <option value="CHF">🇨🇭 CHF — Swiss Franc</option>
+                                <option value="NZD">🇳🇿 NZD — New Zealand Dollar</option>
+                                <option value="SGD">🇸🇬 SGD — Singapore Dollar</option>
+                                <option value="MYR">🇲🇾 MYR — Malaysian Ringgit</option>
+                                <option value="THB">🇹🇭 THB — Thai Baht</option>
+                                <option value="KRW">🇰🇷 KRW — South Korean Won</option>
+                                <option value="QAR">🇶🇦 QAR — Qatari Riyal</option>
+                                <option value="KWD">🇰🇼 KWD — Kuwaiti Dinar</option>
+                                <option value="BHD">🇧🇭 BHD — Bahraini Dinar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Convert button -->
+                <button class="convert-btn" id="convertBtn">
+                    <span id="btnText">Convert Currency</span>
+                    <span class="loader" id="loader"></span>
+                </button>
+
+                <!-- Error -->
+                <div class="error-message" id="errorMessage"></div>
+
+                <!-- Result -->
+                <div class="result-box" id="resultBox">
+
+                    <p class="result-label">Converted Amount</p>
+
+                    <h2 id="result">
+                        $0.00
+                    </h2>
+
+                    <div class="rate-info">
+                        <span id="rateText">1 PKR = 0.00 USD</span>
+                    </div>
+
+                    <p class="updated" id="updatedText">
+                        Live exchange rate
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="footer">
+                <span>Live exchange rates</span>
+                <span>•</span>
+                <span>Built with HTML, CSS & JavaScript</span>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
