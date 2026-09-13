@@ -1,0 +1,459 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #14213d;
+    --navy-light: #20365f;
+    --beige: #f5f0e8;
+    --cream: #fffdf9;
+    --text: #182033;
+    --muted: #7b8190;
+    --border: #e5dfd5;
+    --white: #ffffff;
+    --error: #c94c4c;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--beige);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* Background decoration */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    background: rgba(20, 33, 61, 0.05);
+    border-radius: 50%;
+    top: -150px;
+    right: -100px;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: rgba(20, 33, 61, 0.04);
+    border-radius: 50%;
+    bottom: -150px;
+    left: -100px;
+    z-index: -1;
+}
+
+/* Main */
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+/* Card */
+
+.converter-card {
+    width: 100%;
+    max-width: 620px;
+    background: rgba(255, 253, 249, 0.95);
+    border: 1px solid rgba(229, 223, 213, 0.8);
+    border-radius: 28px;
+    padding: 36px;
+    box-shadow: 0 25px 70px rgba(20, 33, 61, 0.10);
+}
+
+/* Brand */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 32px;
+}
+
+.brand-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.brand h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 3px;
+}
+
+.brand p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* Converter */
+
+.converter {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* Input groups */
+
+.input-group {
+    flex: 1;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+/* Amount */
+
+.amount-box {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    height: 58px;
+    transition: 0.2s ease;
+}
+
+.amount-box:focus-within {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.07);
+}
+
+.currency-symbol {
+    width: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.amount-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    padding-right: 15px;
+}
+
+.amount-box input::-webkit-inner-spin-button,
+.amount-box input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+/* Currency row */
+
+.currency-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.select-box {
+    position: relative;
+}
+
+.select-box select {
+    width: 100%;
+    height: 58px;
+    padding: 0 38px 0 15px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--white);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    transition: 0.2s ease;
+}
+
+.select-box::after {
+    content: "⌄";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-55%);
+    font-size: 18px;
+    color: var(--navy);
+    pointer-events: none;
+}
+
+.select-box select:focus {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.07);
+}
+
+/* Swap button */
+
+.swap-btn {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    margin-bottom: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--navy);
+    font-size: 21px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.swap-btn:hover {
+    background: var(--navy);
+    color: var(--white);
+    transform: rotate(180deg);
+}
+
+.swap-btn:active {
+    transform: rotate(180deg) scale(0.94);
+}
+
+/* Convert button */
+
+.convert-btn {
+    width: 100%;
+    height: 58px;
+    border: none;
+    border-radius: 14px;
+    background: var(--navy);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.convert-btn:hover {
+    background: var(--navy-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(20, 33, 61, 0.18);
+}
+
+.convert-btn:active {
+    transform: translateY(0);
+}
+
+.convert-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
+/* Loader */
+
+.loader {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Result */
+
+.result-box {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 25px;
+    color: var(--white);
+    text-align: center;
+    display: none;
+    animation: resultAppear 0.4s ease;
+}
+
+@keyframes resultAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.result-box h2 {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    word-break: break-word;
+}
+
+.rate-info {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.updated {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 12px;
+}
+
+/* Error */
+
+.error-message {
+    display: none;
+    background: #fff1f1;
+    border: 1px solid #f1cccc;
+    color: var(--error);
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Footer */
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 25px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .app {
+        padding: 18px 14px;
+    }
+
+    .converter-card {
+        padding: 25px 18px;
+        border-radius: 22px;
+    }
+
+    .brand {
+        margin-bottom: 25px;
+    }
+
+    .brand-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 23px;
+        border-radius: 13px;
+    }
+
+    .brand h1 {
+        font-size: 20px;
+    }
+
+    .brand p {
+        font-size: 11px;
+    }
+
+    .currency-row {
+        display: grid;
+        grid-template-columns: 1fr 44px 1fr;
+        gap: 8px;
+    }
+
+    .select-box select {
+        font-size: 11px;
+        padding-left: 10px;
+        padding-right: 25px;
+    }
+
+    .select-box::after {
+        right: 8px;
+    }
+
+    .swap-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        margin-bottom: 9px;
+    }
+
+    .result-box h2 {
+        font-size: 28px;
+    }
+
+    .footer {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .currency-row {
+        grid-template-columns: 1fr;
+    }
+
+    .swap-btn {
+        margin: -2px auto;
+        transform: rotate(90deg);
+    }
+
+    .swap-btn:hover {
+        transform: rotate(270deg);
+    }
+}
